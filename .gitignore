@@ -23,8 +23,11 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+# `.env` is intentionally tracked so the deployed site carries the public
+# NEXT_PUBLIC_* config (AdSense publisher ID, STUN servers, etc.). It must NOT
+# contain real secrets. Keep real secrets and local overrides in `.env.local`,
+# which is ignored here and layered on top of `.env` by Next.js at build time.
 .env*.local
-.env
 
 # vercel
 .vercel

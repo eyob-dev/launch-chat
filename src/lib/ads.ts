@@ -21,8 +21,19 @@ const SLOT_RE = /^\d{6,}$/;
 
 export const adsenseClientId: string = CLIENT_ID;
 
+/**
+ * True when the publisher ID is well-formed. This alone is enough to load the
+ * AdSense loader script (Google's site-verification tag) on every page — that
+ * tag requires only the publisher ID, not an ad slot.
+ */
+export const hasValidPublisherId: boolean = PUBLISHER_ID_RE.test(CLIENT_ID);
+
+/**
+ * True only when an actual ad unit can be shown: a valid publisher ID AND a
+ * valid home slot. Ad units need both; the loader script needs only the ID.
+ */
 export const isAdsenseConfigured: boolean =
-  PUBLISHER_ID_RE.test(CLIENT_ID) && SLOT_RE.test(HOME_SLOT);
+  hasValidPublisherId && SLOT_RE.test(HOME_SLOT);
 
 /** Home page ad slot, or null when not configured. */
 export const homeAdSlot: string | null = isAdsenseConfigured ? HOME_SLOT : null;

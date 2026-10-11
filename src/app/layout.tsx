@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
+import AdSense from "@/components/AdSense";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { siteUrl, adsenseClientId, isAdsenseConfigured } from "@/lib/ads";
+import { adsenseClientId, hasValidPublisherId, siteUrl } from "@/lib/ads";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
@@ -63,18 +63,8 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem('ucl-theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(!t&&m)){document.documentElement.classList.add('dark');}else{document.documentElement.classList.add('light');}}catch(e){}})();`,
           }}
         />
-        {/* Google AdSense loader. Loaded once, on every page, only when a valid
-            publisher ID is configured. This is also the tag Google uses to
-            verify site ownership. next/script guarantees a single load and
-            persists it across client-side navigation. */}
-        {isAdsenseConfigured && adsenseClientId && (
-          <Script
-            id="adsbygoogle-init"
-            async
-            strategy="afterInteractive"
-            crossOrigin="anonymous"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
-          />
+        {hasValidPublisherId && (
+          <AdSense pId={adsenseClientId.replace(/^ca-pub-/, "")} />
         )}
       </head>
       <body className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100">

@@ -32,7 +32,7 @@ export default function ContactPage() {
 
       <h2>Email</h2>
       <p>
-        <a href="mailto:contact@example.com">contact@example.com</a>
+        <a href="mailto:elmasbusinessgroup@gmail.com">elmasbusinessgroup@gmail.com</a>
       </p>
 
       <h2>What to include</h2>

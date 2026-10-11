@@ -15,7 +15,7 @@ const AdSense = ({ pId }: AdsenseTypes) => {
       <meta name="google-adsense-account" content={`ca-pub-${pId}`} />
       <Script
         async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${pId}`}
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4981357540723345`}
         crossOrigin="anonymous"
         strategy="afterInteractive"
       />
